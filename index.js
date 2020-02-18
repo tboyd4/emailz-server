@@ -6,7 +6,7 @@ const app = express();
 
 // creating first route handler
 app.get('/', (req, res) => {
-    res.send({ hi: 'there' });
+    res.send({ bye: 'buddy' });
 })
 
 // telling express what port to listen to (either a dynamic port from Heroku, or 5000 on our local machine)
