@@ -1,6 +1,12 @@
 // imports the express library, and assigns it to variable express
 const express = require('express');
 
+// importing mongoose library
+const mongoose = require('mongoose');
+
+const keys = require('./config/keys');
+mongoose.connect(keys.mongoURI);       // connecting mongoose to our mongoDB database through a URI
+
 // importing the passport.js file
 require('./services/passport');
 
