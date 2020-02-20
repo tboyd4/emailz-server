@@ -20,10 +20,12 @@ const app = express();
 
 app.use(
     cookieSession({
-        maxAge: 30 * 24 * 60 * 60 * 1000,  // this makes the cookie session, and asks express to use it with the key that we made
+        maxAge: 30 * 24 * 60 * 60 * 1000,  // This code allows cookies to be used within the application
         keys: [keys.cookieKey]
     })
 );
+app.use(passport.initialize());  // these tell passport to use cookies
+app.use(passport.session());    
 
 // requiring this returns a function, and then we are setting app as the parameter, effectively running the route as app.get
 require('./routes/authRoutes')(app);
