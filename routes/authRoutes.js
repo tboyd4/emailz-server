@@ -10,6 +10,11 @@ module.exports = (app) => {
     
     app.get('/auth/google/callback', passport.authenticate('google'));
 
+    app.get('/api/logout', (req, res) => {
+        req.logout(); // logout is added to req by passport. This removes the cookie out, and the browser no longer remembers that user
+        res.send(req.user);
+    })
+
     app.get('/api/current_user', (req, res) => {
         res.send(req.user);
     })
