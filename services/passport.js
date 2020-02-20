@@ -15,14 +15,17 @@ passport.use(new GoogleStrategy({
     callbackURL: '/auth/google/callback'
 }, (accessToken, refreshToken, profile, done) => {                   // GoogleStrategy takes two arguements 1.) objects 2.) callback function
 
-    User.findOne({ googleId: profile.id })
+    User.findOne({ googleId: profile.id }) // this is asychronous
         .then((existingUser) => {
             if (existingUser) {
                 // record already exists if this returns value
-               
+                done(null, existingUser);
             } else {
                 // we don't have a record, and we need to create one
-                new User({ googleId: profile.id }).save();    
+                new User({ googleId: profile.id }) // this is asychronous
+                    .save()
+                    .then(user => done(null, user));
+
             }
         })                      
     })
