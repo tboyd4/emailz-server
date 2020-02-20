@@ -5,9 +5,16 @@ const mongoose = require('mongoose');
 
 const User = mongoose.model('users'); // giving one argument (the name) means we are referencing a model class already made
 
-passport.serializeUser((user, done) => {
+passport.serializeUser((user, done) => {  // turns user id into a cookie
     done(null, user.id);        // this user references the user in the collection db, and the user id references a unique id given by mongo, not the profile id from google
 });
+
+passport.deserializeUser((id, done) => {  // turns cookie back into a user instance
+    User.findById(id)
+        .then(user => {
+            done(null, user);
+        })
+})
 
 // importing keys file from congi
 const keys = require('../config/keys');
