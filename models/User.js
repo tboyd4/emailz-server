@@ -8,7 +8,7 @@ const { Schema } = mongoose;
 // creating a new instance of the Schema that will be used for our users model class
 const userSchema = new Schema({
     googleId: String
-})
+});
 
 // this creates the actual model class. arguments are name of model class/collection, and the schema being used. 
 mongoose.model('users', userSchema);

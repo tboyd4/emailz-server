@@ -1,6 +1,9 @@
 // importing 3rd party libraries for passport
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const mongoose = require('mongoose');
+
+const User = mongoose.model('users'); // giving one argument (the name) means we are referencing a model class already made
 
 // importing keys file from congi
 const keys = require('../config/keys');
@@ -11,8 +14,6 @@ passport.use(new GoogleStrategy({
     clientSecret: keys.googleClientSecret,
     callbackURL: '/auth/google/callback'
 }, (accessToken, refreshToken, profile, done) => {                   // GoogleStrategy takes two arguements 1.) objects 2.) callback function
-    console.log('access token : ' + accessToken);
-    console.log('refresh token : ' + refreshToken);   
-    console.log('profile : ' + profile);                     
+    new User({ googleId: profile.id }).save();                      
 })
 );
