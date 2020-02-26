@@ -1,3 +1,5 @@
+import 'materialize-css/dist/css/materialize.min.css'; // this could be done with any css library (bootstrap?)
+
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from 'react-redux'; // This provider component will wrap the App component, and will force react and redux to talk to each other nicely
