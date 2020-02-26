@@ -15,7 +15,7 @@ const Landing = () => <h2>Landing</h2>
 
 const App = (props) => {
     return ( 
-        <div>
+        <div className="container">
             <BrowserRouter> 
                 <div>
                     <Header />
