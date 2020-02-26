@@ -10,3 +10,5 @@ import App from "./components/App";
 const store = createStore(reducers, {}, applyMiddleware()); // creating a redux store
 
 ReactDOM.render(<Provider store={store}><App/></Provider>, document.querySelector("#root"));
+
+// this index will contain all of our redux logic, and will also have the final reactDOM render method
